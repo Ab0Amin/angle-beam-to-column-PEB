@@ -589,10 +589,11 @@ public class Beam_to_Column_Angle_PEB : PluginBase
 
                 t3d.Point MaxSecndaryPoint = secSolid.MaximumPoint;
                 t3d.Point MinSecndaryPoint = secSolid.MinimumPoint;
-
-                t3d.Point point1_max = transformationPlane.TransformationMatrixToGlobal.Transform(MaxSecndaryPoint);
-                t3d.Point point2_min = transformationPlane.TransformationMatrixToGlobal.Transform(MinSecndaryPoint);
-
+                t3d.Point midBetMax_Min = getmidpoint(MaxSecndaryPoint, MinSecndaryPoint);
+                t3d.Point point1_max = new t3d.Point(midBetMax_Min.X, midBetMax_Min.Y, midBetMax_Min.Z + 1000);
+                t3d.Point point2_min = new t3d.Point(midBetMax_Min.X, midBetMax_Min.Y, midBetMax_Min.Z - 1000);
+                point1_max = transformationPlane.TransformationMatrixToGlobal.Transform(point1_max);
+                point2_min = transformationPlane.TransformationMatrixToGlobal.Transform(point2_min);
                 //  double z_Point = MaxSecndaryPoint.Z;
                 double z_dirFactor = 1;
 
